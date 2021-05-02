@@ -17,7 +17,6 @@ import minimize from './Icons/minimize.svg'
 import ringtone from './Sounds/ringtone.mp3'
 
 import {Howl} from 'howler'
-import { connect } from 'react-redux';
 
 const ringtoneSound = new Howl({
   src: [ringtone],
@@ -25,7 +24,7 @@ const ringtoneSound = new Howl({
   preload: true
 })
 
-const Meeting = ({auth}) => {
+const Meeting = () => {
 
 
   const [yourID, setYourID] = useState("");
@@ -85,8 +84,6 @@ useEffect(() => {
   
   socket.current = io("/");
   
-    socket.current.emit('userID', auth.uid)
-
     socket.current.on("yourID", (id) => {
       setYourID(id);
     })
@@ -416,11 +413,4 @@ useEffect(() => {
   )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        auth: state.firebase.auth,
-    }
-}
-
-
-export default connect(mapStateToProps)(Meeting)
+export default Meeting

@@ -364,6 +364,8 @@ body {
   height: 100%;
   object-fit: cover;
   box-shadow: var(--lift-shadow);
+  margin-top: 75px;
+  margin-left: -5px;
 }
 
 .partnerVideoContainer{
@@ -395,21 +397,15 @@ body {
 
 .iconContainer{
   padding: 10px;
-  border-radius: 50%;
-  border: 2px solid var(--primary-color);
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 10%;
+  height: 50%;
   cursor: pointer;
-  background-color: var(--primary-color-hover);
   box-shadow: var(--lift-shadow);
-  transition: background-color .2s cubic-bezier(.4,0,.2,1);
-}
-
-.iconContainer:hover{
-  background-color: rgba(var(--color-background),0.2);
+  position: relative;
+  overflow: hidden;
 }
 
 .iconContainer img{
-  width: 100%;
+  max-width: 25px;
   height: auto;
 }
