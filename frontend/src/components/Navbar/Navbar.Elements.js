@@ -30,9 +30,11 @@ justify-content: flex-start;
 align-items:center;
 cursor: pointer;
 text-decoration:none;
-font-size:2rem;
+font-size:1rem;
 @media screen and (max-width:768px) {
-    font-size:1.5rem;
+    font-size:1.1rem;
+    margin-top:7px;
+    margin-left:-25px;
 }
 `
 
@@ -80,6 +82,7 @@ border-bottom:2px solid transparent;
     border-bottom:2px solid #4b59f7;
 }
 @media screen and (max-width: 960px) {
+    height:60px;
     width:100%;
     &:hover{
         border:none;
@@ -96,7 +99,7 @@ padding:0.5rem 1rem;
 height:100%;
 @media screen and (max-width: 960px) {
     text-align:center;
-    padding: 2rem;
+    padding: 0.5rem;
     width: 100%;
     display: table;
     &:hover{
