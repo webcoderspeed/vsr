@@ -3,7 +3,6 @@ import { io } from "socket.io-client";
 import Peer from "simple-peer";
 import Rodal from 'rodal'
 import './Meeting.css'
-import {Howl} from 'howler'
 
 import  'rodal/lib/rodal.css'
 
@@ -17,13 +16,17 @@ import fullscreen from './Icons/fullscreen.svg'
 import minimize from './Icons/minimize.svg'
 import ringtone from './Sounds/ringtone.mp3'
 
+import {Howl} from 'howler'
+import { connect } from 'react-redux';
+
 const ringtoneSound = new Howl({
   src: [ringtone],
   loop: true,
   preload: true
 })
 
-const Meeting = () => {
+const Meeting = ({auth}) => {
+
 
   const [yourID, setYourID] = useState("");
   const [users, setUsers] = useState({});
@@ -77,13 +80,14 @@ const Meeting = () => {
     </main>
   </>
 
-  
-useEffect(() => {
 
-    socket.current = io("/");
-    
+useEffect(() => {
+  
+  socket.current = io("/");
+  
+    socket.current.emit('userID', auth.uid)
+
     socket.current.on("yourID", (id) => {
-       
       setYourID(id);
     })
     socket.current.on("allUsers", (users) => {
@@ -412,4 +416,11 @@ useEffect(() => {
   )
 }
 
-export default Meeting
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth,
+    }
+}
+
+
+export default connect(mapStateToProps)(Meeting)

@@ -1,11 +1,13 @@
 
-const meeting = (io, userID) => {
+const meeting = (io) => {
+
 const users={}
 
 io.on('connection', socket => {
     //generate username against a socket connection and store it
-    const userid=userID
-    if(!users[userid]){
+    socket.on('userID', (userID) => {
+        const userid = userID
+         if(!users[userid]){
         users[userid] = socket.id
     }
     //send back username
@@ -32,6 +34,9 @@ io.on('connection', socket => {
         io.to(users[data.to]).emit('rejected')
     })
     })
+    })
+
+   
 }
 
 export { meeting }

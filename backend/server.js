@@ -3,20 +3,19 @@ import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
 import morgan from 'morgan'
-import { Server } from 'socket.io';
-import http from 'http';
-import username from 'username-generator';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import { meeting } from './socket/meeting.js';
+import { createServer } from "http";
+import { Server } from "socket.io";
 
 dotenv.config()
 
 const app = express();
-const server = http.createServer(app);
+const server = createServer(app);
 
 // SocketIo and Handling CORS
 const io = new Server(server);
-meeting(io, username.generateUsername('-'))
+meeting(io)
 
 
 if (process.env.NODE_ENV === 'development') {
