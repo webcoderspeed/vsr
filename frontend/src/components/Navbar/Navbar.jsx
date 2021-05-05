@@ -37,7 +37,10 @@ const Navbar = ({auth, signOut}) => {
                         {click ? <FaTimes /> : <FaBars />}
                     </MobileMenu>
                     <NavMenu onClick={handleClick} click={click}>
-                        <NavItem>
+                       {
+                           !auth.uid ? (
+                               <>
+                                <NavItem>
                             <NavLinks to='/'>
                                 Home
                             </NavLinks>
@@ -48,6 +51,28 @@ const Navbar = ({auth, signOut}) => {
                             </NavLinks>
                         </NavItem>
                         <NavItem>
+                            <NavLinks to='/pricing'>
+                                Pricing
+                            </NavLinks>
+                        </NavItem>
+                               </>
+                           ) : <>
+                            <NavItem>
+                            <NavLinks to='/'>
+                                Home
+                            </NavLinks>
+                        </NavItem>                    
+                       <NavItem>
+                            <NavLinks to='/courses'>
+                                Courses
+                            </NavLinks>
+                        </NavItem>
+                        <NavItem>
+                            <NavLinks to='/pricing'>
+                                Pricing
+                            </NavLinks>
+                        </NavItem>
+                            <NavItem>
                             <NavLinks to='/meetings'>
                                 Meetings
                             </NavLinks>
@@ -58,16 +83,13 @@ const Navbar = ({auth, signOut}) => {
                             </NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to='/pricing'>
-                                Pricing
-                            </NavLinks>
-                        </NavItem>
-                        <NavItem>
-                            <NavLinks to='/blog'>
+                            <NavLinks to='/blogs'>
                                 Blog
                             </NavLinks>
                         </NavItem>
-                        <NavItemBtn>
+                           </>
+                       }
+                        <NavItemBtn>                           
                         {
                             (auth.uid) ? (
                                  <NavBtnLink to='/'>

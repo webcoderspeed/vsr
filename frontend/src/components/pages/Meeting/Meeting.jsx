@@ -3,6 +3,8 @@ import { io } from "socket.io-client";
 import Peer from "simple-peer";
 import Rodal from 'rodal'
 import './Meeting.css'
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 import  'rodal/lib/rodal.css'
 
@@ -24,7 +26,8 @@ const ringtoneSound = new Howl({
   preload: true
 })
 
-const Meeting = () => {
+const Meeting = ({auth}) => {
+
 
 
   const [yourID, setYourID] = useState("");
@@ -48,6 +51,7 @@ const Meeting = () => {
   const partnerVideo = useRef();
   const socket = useRef();
   const myPeer=useRef();
+  
 
   let landingHTML=<>
     <main>
@@ -83,6 +87,7 @@ const Meeting = () => {
 useEffect(() => {
   
   socket.current = io("/");
+
   
     socket.current.on("yourID", (id) => {
       setYourID(id);
@@ -376,6 +381,11 @@ useEffect(() => {
     </span>
   }
 
+    if (!auth.uid){
+    return <Redirect to = '/sign-in' />
+  }
+
+
   return (
     <>
       <div style={{display: renderLanding()}}>
@@ -413,4 +423,10 @@ useEffect(() => {
   )
 }
 
-export default Meeting
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth,
+    }
+}
+
+export default connect(mapStateToProps)(Meeting);

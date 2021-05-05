@@ -3,7 +3,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const config = {
-     apiKey: "AIzaSyACUHZpKW-xCqjHNkcfPBBRLkoR2psidlM",
+    apiKey: "AIzaSyACUHZpKW-xCqjHNkcfPBBRLkoR2psidlM",
     authDomain: "virtual-study-resource-22246.firebaseapp.com",
     projectId: "virtual-study-resource-22246",
     storageBucket: "virtual-study-resource-22246.appspot.com",
