@@ -9,9 +9,6 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import { meeting } from './utils/socket/meeting.js';
 import blogRoutes from './routes/blog.js';
 import connectDB from './config/db.js';
-import herokuAwake from 'heroku-awake';
-
-herokuAwake("https://virtual-study-resource.herokuapp.com/")
 
 connectDB();
 dotenv.config()
